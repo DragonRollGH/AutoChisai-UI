@@ -14,7 +14,7 @@ if (isset($_POST['username'])) {
             $user['Chisai'] = 0;
             echo 1;
         } elseif ($_POST['action'] == 'Once') {
-            exec("python Chisai_TJ.py " . $_POST['username']);
+            exec("python3 Chisai.py " . $_POST['username']);
             echo 1;
         } elseif ($_POST['action'] == 'Email') {
             $user['Email'] = explode(",", $_POST['param']);

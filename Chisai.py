@@ -207,7 +207,7 @@ class Chisai_TJ:
         return self.ifSuccess
 
     def LOG(self, msg):
-        with open('Chisai_TJ.log', 'a') as LOG:
+        with open('Chisai.log', 'a') as LOG:
             t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             LOG.write(t+'  '+msg+'\n')
             print(t+'  '+msg)
