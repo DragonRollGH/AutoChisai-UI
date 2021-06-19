@@ -220,14 +220,13 @@ class Chisai_TJ:
             self.SendEmail(Content, Title)
         elif self.Level in (1, 2):
             self.SendEmail(Title, Title)
-
-        # if self.tblAnnouncementJson['data']:
-        #     Content = ""
-        #     for Announcement in self.tblAnnouncementJson['data']:
-        #         Content += "<h2>{}</h2>{}".format(Announcement['title'],Announcement['content'])
-        #     self.SendEmail(Title, Content, type='html')
-        # else:
-        #     self.SendEmail(Title, Title)
+            # if self.tblAnnouncementJson['data']:
+            #     Content = ""
+            #     for Announcement in self.tblAnnouncementJson['data']:
+            #         Content += "<h2>{}</h2>{}".format(Announcement['title'],Announcement['content'])
+            #     self.SendEmail(Title, Content, type='html')
+            # else:
+            #     self.SendEmail(Title, Title)
 
         self.LOG(Title)
 
