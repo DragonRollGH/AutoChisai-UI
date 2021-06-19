@@ -75,18 +75,8 @@ if (!isset($_SESSION['islogin'])) {
 
         function Location() {
             latng = "<?php echo isset($_GET['latng']) ? $_GET['latng'] : ''; ?>";
-            // https: //apis.map.qq.com/ws/geocoder/v1/?location=
             if (latng) {
                 addres = {};
-                // $.getJSON('https://apis.map.qq.com/ws/geocoder/v1/', {
-                //     location: latng,
-                //     key: '4TDBZ-R6EKR-NTYWJ-WTJOD-OZC2V-KNF5R'
-                // }, (res) => {
-                //     getLocation(res);
-                //     confirm(`将更改地址为：\n
-                //         ${addres.nation}${addres.province}${addres.city}${addres.district}${addres.locStreet}${addres.locStreetno}\n
-                //         `);
-                // });
                 $.ajax({
                     type: 'GET',
                     url: 'https://apis.map.qq.com/ws/geocoder/v1/?',
@@ -203,7 +193,7 @@ if (!isset($_SESSION['islogin'])) {
             <!-- <p id='LevelTip'>&nbsp;</p> -->
         </form>
 
-        <a href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=http://127.0.0.1:8080&key=4TDBZ-R6EKR-NTYWJ-WTJOD-OZC2V-KNF5R&referer=myapp">
+        <a href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=http://106.75.165.197:8083/&key=4TDBZ-R6EKR-NTYWJ-WTJOD-OZC2V-KNF5R&referer=myapp">
             <button id='Location' class='btn btn-primary button' onclick=''>更新定位地址</button>
         </a>
         <hr>
@@ -229,7 +219,7 @@ if (!isset($_SESSION['islogin'])) {
             <p>
                 <?php
                 if ($_SESSION['username'] == 'Roll') {
-                    echo str_replace("\r\n", "<br>", system("tail /root/Chisai_TJ.log"));
+                    echo str_replace("\r\n", "<br>", system("tail chisai.log"));
                 }
                 ?>
             </p>
