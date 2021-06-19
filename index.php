@@ -93,7 +93,7 @@ if (!isset($_SESSION['islogin'])) {
                     },
                     success: (res) => {
                         getLocation(res);
-                        confirm(`！此功能还在开发中，现在是无效的！ \n将更改地址为：\n“${addres.nation}${addres.province}${addres.city}${addres.district}${addres.locStreet}${addres.locStreetno}”\n是否确认更改？`);
+                        confirm(`！此功能还在开发中，现在是无效的！ \n是否确认将地址更改为：\n“${addres.nation}${addres.province}${addres.city}${addres.district}${addres.locStreet}${addres.locStreetno}”`);
                     }
                 });
             }
@@ -117,32 +117,12 @@ if (!isset($_SESSION['islogin'])) {
         function Once() {
             submit('Once', '', '', (msg) => {
                 console.log(msg)
-                $('#OnceTip').html('已开始运行，打卡结果请留意邮件！');
+                $('#ChisaiTip').html('已开始运行，打卡结果请留意邮件！');
                 setTimeout(() => {
-                    $('#OnceTip').html('&nbsp;');
+                    $('#ChisaiTip').html('&nbsp;');
                 }, 3000);
             });
         }
-
-        $('#Email').on('submit', (e) => {
-            e.preventDefault();
-            submit('Email', $('#Email').serializeArray()[0].value, '', (msg) => {
-                $('#UpdateTips').html('已成功更新邮箱地址！');
-                setTimeout(() => {
-                    $('#UpdateTips').html('&nbsp;');
-                }, 3000);
-            });
-        })
-
-        $('#Level').on('submit', (e) => {
-            e.preventDefault();
-            submit('Level', $('#Level').serializeArray()[0].value, '', (msg) => {
-                $('#UpdateTips').html('已成功更新通知等级！');
-                setTimeout(() => {
-                    $('#UpdateTips').html('&nbsp;');
-                }, 3000);
-            });
-        })
 
         onload = () => {
             username = "<?php echo $_SESSION['username']; ?>";
@@ -155,6 +135,26 @@ if (!isset($_SESSION['islogin'])) {
                 $('#Expire').html('有效期至：' + msg['Expire']);
                 $('#Runtimes').html('本程序已为您打卡'+msg['Runtimes']+'天');
             });
+
+            $('#Email').on('submit', (e) => {
+                e.preventDefault();
+                submit('Email', $('#Email').serializeArray()[0].value, '', (msg) => {
+                    $('#UpdateTips').html('已成功更新邮箱地址！');
+                    setTimeout(() => {
+                        $('#UpdateTips').html('&nbsp;');
+                    }, 3000);
+                });
+            })
+
+            $('#Level').on('submit', (e) => {
+                e.preventDefault();
+                submit('Level', $('#Level').serializeArray()[0].value, '', (msg) => {
+                    $('#UpdateTips').html('已成功更新通知等级！');
+                    setTimeout(() => {
+                        $('#UpdateTips').html('&nbsp;');
+                    }, 3000);
+                });
+            })
         }
     </script>
 </head>
@@ -172,7 +172,7 @@ if (!isset($_SESSION['islogin'])) {
         <p id='ChisaiTip'>&nbsp;</p>
 
         <button id='Once' class='btn btn-primary button' onclick='Once()'>立即打卡一次</button>
-        <p id='OnceTip'>&nbsp;</p>
+        <!-- <p id='OnceTip'>&nbsp;</p> -->
         <hr>
         <form id='Email'>
             <p id='UpdateTips'>&nbsp;</p>
