@@ -103,7 +103,7 @@ if (!isset($_SESSION['islogin'])) {
                     },
                     success: (res) => {
                         getLocation(res);
-                        confirm(`将更改地址为：\n“${addres.nation}${addres.province}${addres.city}${addres.district}${addres.locStreet}${addres.locStreetno}”\n是否确认更改？`);
+                        confirm(`！此功能还在开发中，现在是无效的！ \n将更改地址为：\n“${addres.nation}${addres.province}${addres.city}${addres.district}${addres.locStreet}${addres.locStreetno}”\n是否确认更改？`);
                     }
                 });
             }
@@ -162,7 +162,8 @@ if (!isset($_SESSION['islogin'])) {
                 if (msg['Chisai'] == 1) {
                     $('#Chisai').attr("checked", true);
                 }
-                $('#Expire').html('有效期：' + msg['Expire']);
+                $('#Expire').html('有效期至：' + msg['Expire']);
+                $('#Runtimes').html('本程序已为您打卡'+msg['Runtimes']+'天');
             });
         }
     </script>
@@ -209,6 +210,9 @@ if (!isset($_SESSION['islogin'])) {
 
         <b>
             <h5 id='Expire'></h5>
+        </b>
+        <b>
+            <h5 id='Runtimes'></h5>
         </b>
 
         <div class="paragraph">

@@ -27,6 +27,7 @@ class Chisai_TJ:
         self.ifSuccess = False
         self.exp = 0
         self.IP = '58.41.205.20'
+        self.Chisainame = ''
         self.Email = []
         self.Level = 1
         self.POST = {
@@ -67,6 +68,8 @@ class Chisai_TJ:
         for k, v in Usr.items():
             if k == 'IP':
                 self.IP = v
+            elif k == 'Chisainame':
+                self.Chisainame = v
             elif k == 'Email':
                 for e in v:
                     self.Email.append(e)
@@ -207,10 +210,18 @@ class Chisai_TJ:
         return self.ifSuccess
 
     def LOG(self, msg):
-        with open('Chisai.log', 'a') as LOG:
+        with open('chisai.log', 'a') as LOG:
             t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             LOG.write(t+'  '+msg+'\n')
             print(t+'  '+msg)
+
+    def UPDATE(self):
+        conf = {}
+        with open('conf.json', 'r', encoding='utf-8') as file:
+            conf = json.loads(file.read())
+        conf[self.Chisainame]['Runtimes'] += 1
+        with open('conf.json', 'w', encoding='utf-8') as file:
+            file.write(json.dumps(conf))
 
     def Success(self):
         self.ifSuccess = True
@@ -229,6 +240,7 @@ class Chisai_TJ:
             #     self.SendEmail(Title, Title)
 
         self.LOG(Title)
+        self.UPDATE()
 
     def Error(self, Error):
         Title = '打卡失败: {}'.format(self.POST['studentStudentno'])
@@ -264,7 +276,8 @@ class Chisai_TJ:
 
 Chisais = []
 conf = {}
-with open('/root/Chisai/conf.json', 'r', encoding='utf-8') as file:
+
+with open('conf.json', 'r', encoding='utf-8') as file:
     conf = json.loads(file.read())
 
 if len(sys.argv) == 1:
